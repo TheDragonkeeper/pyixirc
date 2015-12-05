@@ -8,15 +8,14 @@ import json
 import requests
 import argparse
 
-network = 'irc.freenode.net'  ##last run,  wouldnt connect to abjects:9999
+network = 'irc.freenode.net'  ##last run,  wouldnt connect to abject, will to freenode:7000 ssl
 nick = 'nottly'
 chan = ''
 port = 7000
 
 socket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 
-searchterm = '0'  ###seems to stick at this value and not redefine in while loop
-chanid = ''
+chanid = '92'
 page = ''
 reverse = ''
 class termcolors:
@@ -31,15 +30,15 @@ class termcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
-def do_search():
+def do_search(searchterm):
     searches = requests.get("http://ixirc.com/api/?q=%s&cid=%s&pn=%s" % (
         searchterm, chanid, page)).json()
     jsondata = json.loads(str(searches).replace("'", '"'))
     jsons = jsondata['results']
     return jsons
 
-def print_search():
-    for item in reversed(do_search()):
+def print_search(searchterm):
+    for item in reversed(do_search(searchterm)):
         title = item['name']
         packn = item['n']
         botn = item['uname']
@@ -76,9 +75,9 @@ def main(network, nick, chan, port):
 		user_in = input(":")
 		if user_in.find("!s") != -1:
 			user_in = user_in[3:]
-			searchterm = user_in  ##this isnt redefining for use in print_search 
+			searchterm = user_in 
 			try:
-				print_search()   ## results show but needs searchterm to work to be specific
+				print_search(searchterm)
 			except KeyError:
 				print("No Result Found")
 		print(user_in)
