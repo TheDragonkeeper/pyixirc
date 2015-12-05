@@ -8,10 +8,10 @@ import json
 import requests
 import argparse
 
-network = 'irc.abjects.net'  ##last run,  wouldnt connect to abject, will to freenode:7000 ssl
+network = 'irc.freenode.net'  ##last run,  wouldnt connect to abjects:9999
 nick = 'nottly'
-chan = 'moviegods'
-port = 9999
+chan = ''
+port = 7000
 
 socket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 
@@ -88,8 +88,10 @@ def main(network, nick, chan, port):
 		if user_in.find('!q') != -1:
 			irc.send(bytes('QUIT\r\n', "UTF-8"))
 			exit()
-#		if user_in.find('!d') != -1:   ##to check for xfer
+		if user_in.find('!d') != -1:   ##to check for xfer
+			bot_name = 'Dragonkeeper'
+			pack_number = '1'
 			#user_in = user_in[3:]   ## for option select  !d 1  will show as 1
-#			irc.send(bytes('PRIVMSG bot_name :xdcc send pack_number\r\n', "UTF-8"))
+			irc.send(bytes('PRIVMSG ' +  bot_name + ' :xdcc send ' + pack_number + '\r\n', "UTF-8"))
 if __name__=='__main__':
     main(network, nick, chan, port)
