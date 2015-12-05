@@ -1,17 +1,10 @@
 # pyixirc
-Easy way to search for stuff on http://ixirc.com/ just because.
-
-More info soon
-
-
+Easy way to search for stuff on http://ixirc.com/ 
+''''
+connects to irc
+eventually will have results used as options for commands to bots
+''''
 # TODO & IDEAS
-- [ ] create setup.py
-- [ ] more complete help info
-- [ ] copy /msg to clipboard from result
-- [*] search different pages
-- [*] reverse order
-- [ ] consider some type of weechat integration
 - [ ] alternate colors of results
 - [ ] possibly turnicate long results (as an option)
 - [ ] filter results (example nothing with |p| )
-- [ ] pacakge?
